@@ -1,3 +1,8 @@
+# Changes in forked version
+* Retry for file status and rename operations (required for copying files to s3).
+* Disable assembly for `sbt publishLocal` .
+* Return result from `SparkDistCP.run` method.
+
 # SparkDistCP
 [![Build Status](https://dev.azure.com/coxautodata/Open%20Source/_apis/build/status/CoxAutomotiveDataSolutions.spark-distcp?branchName=master)](https://dev.azure.com/coxautodata/Open%20Source/_build/latest?definitionId=6&branchName=master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.coxautodata/spark-distcp_2.11.svg)](https://search.maven.org/search?q=g:com.coxautodata%20AND%20a:spark-distcp*) [![Coverage Status](https://img.shields.io/codecov/c/github/CoxAutomotiveDataSolutions/spark-distcp/master.svg)](https://codecov.io/gh/CoxAutomotiveDataSolutions/spark-distcp/branch/master)

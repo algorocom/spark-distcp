@@ -37,15 +37,16 @@ lazy val sparkdistcp = (project in file("."))
     libraryDependencies += scopt,
     libraryDependencies ++= spark(scalaVersion.value),
     libraryDependencies += "org.scala-lang.modules" %% "scala-collection-compat" % Dependencies.collectionCompat % Provided,
-    assemblyPackageScala / assembleArtifact := false,
-    assembly / assemblyOption ~= {
-      _.withIncludeScala(false)
-    },
-    assembly / Keys.test := {},
-    assembly / artifact := {
-      val art = (assembly / artifact).value
-      art.withClassifier(Some("assembly"))
-    },
+    libraryDependencies += "com.softwaremill.retry" %% "retry" % "0.3.4"  % Compile,
+    // assemblyPackageScala / assembleArtifact := false,
+    // assembly / assemblyOption ~= {
+    //   _.withIncludeScala(false)
+    // },
+    // assembly / Keys.test := {},
+    // assembly / artifact := {
+    //   val art = (assembly / artifact).value
+    //   art.withClassifier(Some("assembly"))
+    // },
     ThisBuild / assemblyShadeRules := Seq(
       ShadeRule.rename("scopt.**" -> "internal.spark.distcp.scopt.@1").inAll
     ),
@@ -93,6 +94,6 @@ lazy val sparkdistcp = (project in file("."))
     publishConfiguration := publishConfiguration.value
       .withOverwrite(isSnapshot.value),
     publishLocalConfiguration := publishLocalConfiguration.value
-      .withOverwrite(isSnapshot.value),
-    addArtifact(assembly / artifact, assembly)
+      .withOverwrite(isSnapshot.value)
+      //,addArtifact(assembly / artifact, assembly)
   )

@@ -69,7 +69,7 @@ object SparkDistCP extends Logging {
     sourcePaths: Seq[Path],
     destinationPath: Path,
     options: SparkDistCPOptions
-  ): Unit = {
+  ): String = {
     import sparkSession.implicits._
 
     assert(sourcePaths.nonEmpty, "At least one source path must be given")
@@ -135,6 +135,7 @@ object SparkDistCP extends Logging {
     }
 
     logInfo("SparkDistCP Run Statistics\n" + accumulators.getOutputText)
+    accumulators.getOutputText
 
   }
 
